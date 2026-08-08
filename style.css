@@ -37,10 +37,16 @@ body {
 a {
   color: var(--accent);
   text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.25s ease, color 0.2s ease;
 }
 
 a:hover {
   color: var(--accent-hover);
+  background-size: 100% 1px;
 }
 
 h1, h2, h3 {
@@ -107,7 +113,7 @@ h1, h2, h3 {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 0 6px var(--bg-alt);
+  box-shadow: 0 0 0 6px var(--bg-alt), 0 0 40px 6px rgba(179, 145, 245, 0.25);
   margin-bottom: 1.75rem;
 }
 
@@ -199,5 +205,45 @@ h1, h2, h3 {
 @media (max-width: 640px) {
   #about h1 {
     font-size: 2.1rem;
+  }
+
+  .contact-list {
+    flex-wrap: nowrap;
+    gap: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    overflow-x: auto;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#about > *,
+#contact > * {
+  animation: fade-up 0.6s ease both;
+}
+
+#about > *:nth-child(2) { animation-delay: 0.08s; }
+#about > *:nth-child(3) { animation-delay: 0.16s; }
+#about > *:nth-child(4) { animation-delay: 0.24s; }
+#about > *:nth-child(5) { animation-delay: 0.32s; }
+
+#contact > *:nth-child(2) { animation-delay: 0.08s; }
+#contact > *:nth-child(3) { animation-delay: 0.16s; }
+#contact > *:nth-child(4) { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  #about > *,
+  #contact > * {
+    animation: none;
   }
 }
